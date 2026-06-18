@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0d0d0d">
+    <title>Ultimate Survival: 10 Levels</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Anti-cache / version protection -->
+    <meta name="game-version" content="1.0.0-secured">
+</head>
+<body>
+    <div id="game-wrapper">
+        <!-- Canvas Layer -->
+        <canvas id="gameCanvas" width="720" height="1280"></canvas>
+
+        <!-- UI Layer -->
+        <div id="ui-layer">
+            <!-- HUD -->
+            <div id="hud" class="hidden">
+                <div class="hud-top">
+                    <div class="stat-box"><span>❤️</span><span id="health">100</span></div>
+                    <div class="stat-box"><span>⏱️</span><span id="timer">0</span></div>
+                    <div class="stat-box"><span>🎯</span><span id="level">1</span></div>
+                    <div class="stat-box"><span>💀</span><span id="kills">0</span></div>
+                </div>
+                <div class="hud-bottom">
+                    <div id="wave-warning"></div>
+                    <div class="progress-bar"><div id="progress-fill"></div></div>
+                </div>
+            </div>
+
+            <!-- Main Menu -->
+            <div id="menu" class="screen">
+                <div class="menu-bg"></div>
+                <div class="menu-content">
+                    <h1>🔥 ULTIMATE SURVIVAL 🔥</h1>
+                    <p class="subtitle">10 Levels of Hell — Can You Survive?</p>
+                    <button id="btn-start" class="btn primary">START SURVIVAL</button>
+                    <button id="btn-continue" class="btn hidden">CONTINUE</button>
+                    <button id="btn-how" class="btn">HOW TO PLAY</button>
+                    <div class="security-badge">🔒 Secured Edition v1.0.0</div>
+                </div>
+            </div>
+
+            <!-- How To Play -->
+            <div id="how-to" class="screen hidden">
+                <div class="menu-content">
+                    <h2>HOW TO PLAY</h2>
+                    <ul>
+                        <li>Drag the joystick to move</li>
+                        <li>Avoid or shoot enemies</li>
+                        <li>Survive until the timer runs out</li>
+                        <li>Each level gets harder</li>
+                        <li>Level 10 is <strong>IMPOSSIBLE</strong></li>
+                    </ul>
+                    <button id="btn-back" class="btn primary">BACK</button>
+                </div>
+            </div>
+
+            <!-- Level Intro -->
+            <div id="level-intro" class="screen hidden">
+                <div class="level-card">
+                    <h2 id="intro-title">LEVEL 1</h2>
+                    <p id="intro-desc">The beginning of your nightmare...</p>
+                    <div class="level-stats">
+                        <div>Difficulty: <span id="intro-diff">⭐</span></div>
+                        <div>Survive: <span id="intro-time">30</span>s</div>
+                    </div>
+                    <button id="btn-begin" class="btn primary">BEGIN</button>
+                </div>
+            </div>
+
+            <!-- Game Over / Level Complete -->
+            <div id="result" class="screen hidden">
+                <div class="result-card">
+                    <h2 id="result-title">GAME OVER</h2>
+                    <p id="result-msg">You didn't survive!</p>
+                    <div class="result-stats">
+                        <div>Level: <span id="res-level">1</span></div>
+                        <div>Kills: <span id="res-kills">0</span></div>
+                        <div>Time: <span id="res-time">0</span>s</div>
+                    </div>
+                    <button id="btn-retry" class="btn primary">RETRY</button>
+                    <button id="btn-menu" class="btn">MAIN MENU</button>
+                </div>
+            </div>
+
+            <!-- Touch Controls -->
+            <div id="controls" class="hidden">
+                <div id="joystick-zone">
+                    <div id="joystick-base"></div>
+                    <div id="joystick-knob"></div>
+                </div>
+                <div id="action-buttons">
+                    <div id="btn-shoot" class="action-btn">🔥</div>
+                    <div id="btn-bomb" class="action-btn">💣</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Security / Anti-Cheat Scripts -->
+    <script src="assets/js/antiCheat.js"></script>
+    <script src="assets/js/levels.js"></script>
+    <script src="assets/js/game.js"></script>
+</body>
+</html>
