@@ -12,13 +12,12 @@ jobs:
           distribution: 'temurin'
       - name: Build with Gradle
         run: |
-          # আমরা প্রথমে খুঁজে দেখছি gradlew কোথায় আছে
-          find . -name "gradlew"
-          # তারপর সেখানেই কাজ করব
-          chmod +x $(find . -name "gradlew")
-          $(find . -name "gradlew") assembleDebug
+          # শুধু survival_game ফোল্ডারের ভেতরে gradlew খোঁজা হচ্ছে
+          cd survival_game
+          chmod +x gradlew
+          ./gradlew assembleDebug
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: Ultimate-Survival-APK
-          path: "**/*.apk"
+          path: survival_game/app/build/outputs/apk/debug/*.apk
