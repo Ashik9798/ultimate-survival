@@ -1,75 +1,22 @@
 name: Build Android APK
-
-# Run on every push to main branch or manually
-on:
-  push:
-    branches: [main, master]
-  workflow_dispatch:
-
+on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      # 1. Checkout code
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      # 2. Setup Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          cache: 'npm'
-
-      # 3. Install dependencies and build
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build production web assets
-        run: npm run build
-
-      # 4. Setup Android environment
-      - name: Setup JDK 17
+      - uses: actions/checkout@v4
+      - name: set up JDK
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
-
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
-      # 5. Add Android platform if not exists
-      - name: Add Android platform
-        run: npx cap add android
-
-      # 6. Generate debug keystore for free APK
-      - name: Generate debug keystore
+      - name: Build with Gradle
         run: |
-          cd android/app
-          keytool -genkey -v \
-            -keystore debug.keystore \
-            -alias debug \
-            -keyalg RSA -keysize 2048 -validity 10000 \
-            -storepass android -keypass android \
-            -dname "CN=Android Debug,O=Android,C=US"
-
-      # 7. Build signed APK
-      - name: Build APK
-        run: |
-          cd android
+          cd survival_game
+          chmod +x gradlew
           ./gradlew assembleDebug
-
-      # 8. Upload APK as downloadable artifact
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: Ultimate-Survival-APK
-          path: android/app/build/outputs/apk/debug/app-debug.apk
-          if-no-files-found: error
-
-      # 9. (Optional) For Play Store AAB, uncomment below and add real keystore secrets
-      # - name: Build AAB
-      #   run: |
-      #     cd android
-      #     ./gradlew bundleRelease
+          path: survival_game/app/build/outputs/apk/debug/app-debug.apk
