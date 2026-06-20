@@ -1,0 +1,11 @@
+node_modules/
+android/
+ios/
+.cache/
+*.apk
+*.aab
+*.keystore
+*.jks
+*.log
+.DS_Store
+Thumbs.db
