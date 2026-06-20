@@ -1,0 +1,32 @@
+{
+  "name": "ultimate-survival-10",
+  "version": "1.0.0",
+  "description": "10-level impossible survival game for mobile app stores",
+  "main": "index.html",
+  "scripts": {
+    "build": "node build/build.js",
+    "icons": "node build/icons.js",
+    "serve": "npx http-server -p 8080",
+    "android:init": "npx cap add android",
+    "android:sync": "npx cap sync android",
+    "android:open": "npx cap open android",
+    "android:build": "npm run build && npx cap sync android && cd android && ./gradlew assembleRelease"
+  },
+  "keywords": [
+    "survival",
+    "game",
+    "html5",
+    "mobile",
+    "android"
+  ],
+  "author": "Ashikul Alam",
+  "license": "Proprietary",
+  "devDependencies": {
+    "@capacitor/android": "^6.0.0",
+    "@capacitor/cli": "^6.0.0",
+    "@capacitor/core": "^6.0.0",
+    "fs-extra": "^11.0.0",
+    "puppeteer-core": "^24.43.1",
+    "terser": "^5.0.0"
+  }
+}
